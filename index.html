@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gubuk Terapis</title>
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Nunito:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1F1C1C;
+        }
+        
+        .navbar {
+            padding: 1rem 2rem;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled {
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .navbar-brand img {
+            height: 100px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled .navbar-brand img {
+            height: 65px;
+        }
+        
+        .nav-link {
+            color: white;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar.scrolled .nav-link {
+            color: #333;
+        }
+        
+        .nav-link:hover {
+            color: #70BDD7;
+        }
+        
+        .banner {
+            height: 150vh;
+            background-image: url('banner.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .banner-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .banner-features {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .banner-features span {
+            margin: 0 20px;
+        }
+
+        .transport-free {
+            color: #70BDD7;
+        }
+
+        .banner-area {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        .banner-buttons {
+            margin-top: 2rem;
+        }
+
+        .banner-buttons .btn {
+            padding: 16px 38px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0 10px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 260px;
+        }
+
+        .btn-primary {
+            background-color: #70BDD7;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5ca8c2;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light:hover {
+            transform: translateY(-2px);
+        }
+
+        /* About Us Styling */
+        .about-us {
+            background-color: #1F1C1C; /* Dark background color */
+            color: #fff;
+            text-align: left;
+        }
+
+        .about-title {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .about-us p {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .about-large-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-btn {
+            padding: 16px 38px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0 0;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 260px;
+            display: block;
+        }
+
+        .about-images {
+            text-align: right;
+        }
+
+        .about-images img {
+            display: block;
+            margin: 0 0 0 auto;
+            max-width: 80%;
+            height: auto;
+        }
+
+        /* Why Choose Us Styling */
+        .why-choose-us {
+            background-color: #1F1C1C; /* Dark background color */
+            color: #fff; /* White text color */
+        }
+
+        .why-choose-us h2 {
+            font-family: 'Playfair Display', serif; /* Font for main title */
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .why-item h3 {
+            font-family: 'Nunito', sans-serif; /* Font for item titles */
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .why-item p {
+            font-family: 'Nunito', sans-serif; /* Font for item text */
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #ccc; /* Lighter text color */
+        }
+
+        .why-icon {
+            font-size: 3rem; /* Size for placeholder icons */
+            color: #70BDD7; /* Icon color */
+        }
+
+        .why-icon img {
+            max-width: 30%; /* Reduce image size further */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Services Section Styling */
+        .services {
+            background-color: #1F1C1C; /* Match background color */
+            color: #fff;
+            margin-top: 10rem; /* Increase space above this section */
+        }
+
+        .services h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-item {
+            background-color: transparent;
+            border-radius: 8px;
+            margin-bottom: 0rem; /* Increased bottom margin for more vertical spacing */
+            padding-bottom: 1rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-img {
+            border-radius: 8px;
+            margin-bottom: 1rem; /* Space between image and title */
+            margin-top: 4rem; /* Add margin at the top */
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .service-item h3 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            padding: 0 1rem; /* Add horizontal padding */
+        }
+
+        .service-description {
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #ccc;
+            margin-bottom: 1rem;
+            padding: 0 1rem; /* Add horizontal padding */
+            flex-grow: 1; /* Allow description to take up available space */
+        }
+
+        .service-price {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+            padding: 0 1rem; /* Add horizontal padding */
+            text-align: left; /* Ensure text is left-aligned */
+        }
+
+        .service-price span {
+            display: block;
+            margin-bottom: 5px; /* Add small space between price items */
+        }
+
+        .service-price span:last-child {
+            margin-bottom: 0; /* Remove bottom margin for the last item */
+        }
+
+        .service-btn {
+            /* Styling similar to banner buttons */
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 auto; /* Center button */
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 80%; /* Button width */
+            display: block; /* Make it a block element to center */
+             background-color: #70BDD7;
+            border: none;
+        }
+
+         .service-btn:hover {
+            background-color: #5ca8c2;
+            transform: translateY(-2px);
+        }
+
+        /* New section: Hubungi Admin */
+        .hubungi-admin-section img {
+            max-width: 60%; /* Mengurangi ukuran gambar */
+            height: auto;
+        }
+
+        /* New section: Area Layanan Styling */
+        .service-area {
+            background-color: #1F1C1C; /* Dark background */
+            color: #fff;
+        }
+
+        .service-area h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+        }
+
+        .area-timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 3rem;
+            padding: 0 2rem; /* Add padding to the sides */
+        }
+
+        .area-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-color: #70BDD7; /* Blue line color */
+            z-index: 0; /* Ensure line is behind dots */
+            transform: translateY(-50%);
+        }
+
+        .area-point {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 1; /* Ensure points are above the line */
+            flex-grow: 0; /* Prevent points from growing */
+            flex-shrink: 0; /* Prevent points from shrinking */
+            width: 20%; /* Allocate width for each point */
+        }
+
+        .dot {
+            width: 20px;
+            height: 20px;
+            background-color: #70BDD7; /* Blue dot color */
+            border-radius: 50%;
+            margin-bottom: 1rem; /* Space between dot and icon/text */
+            position: relative; /* Needed for positioning if required later */
+        }
+
+         .location-icon {
+            font-size: 2.5rem; /* Size for location icon */
+            color: #70BDD7; /* Blue icon color */
+            margin-bottom: 0.5rem; /* Space between icon and city name */
+        }
+
+        .city-name {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff; /* White text color */
+        }
+
+        /* Adjust flex basis for more even spacing */
+        .area-point:first-child { justify-content: flex-start; }
+        .area-point:last-child { justify-content: flex-end; }
+
+        /* Remove unnecessary line divs */
+        .area-line { display: none; }
+
+        /* New section: Bottom Banner */
+        .bottom-banner {
+            height: 400px; /* Atur tinggi div */
+            background-image: url('/Banner.png'); /* Ganti dengan URL gambar latar belakang kamu */
+            background-size: cover;
+            background-position: 30% 70%; /* Fokus ke bagian gambar yang diinginkan */
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 0; /* Tambahan padding jika diperlukan */
+            color: white;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bottom-banner .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Lapisan gelap */
+            z-index: 1;
+        }
+
+        .bottom-banner .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .bottom-banner h1 {
+            font-size: 78px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* New section: Kontak Kami Styling */
+        .contact-section {
+            background-color: #1F1C1C; /* Dark background */
+            color: #fff;
+            padding: 5rem 0;
+        }
+
+        .contact-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 2rem; /* Size for social media icons */
+            color: #70BDD7; /* Blue color */
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .map-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            margin-bottom: 2rem; /* Space below the map */
+        }
+
+         .map-placeholder img {
+            max-width: 100%;
+            height: auto;
+            display: block; /* Remove extra space below image */
+        }
+
+        /* Adjust spacing for text next to map */
+        .contact-text-block {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #fff;
+            margin-bottom: 2rem; /* Space below the text block */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 70px;
+            }
+            
+            .navbar.scrolled .navbar-brand img {
+                height: 60px;
+            }
+
+            .banner {
+                height: 100vh;
+            }
+
+            .banner-title {
+                font-size: 2.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .banner-features {
+                font-size: 1rem;
+            }
+
+            .banner-features span {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .banner-buttons .btn {
+                width: 100%;
+                margin: 10px 0;
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
+
+            .about-large-title {
+                font-size: 2rem;
+            }
+
+            .about-btn {
+                width: 100%;
+                margin: 1rem 0;
+                font-size: 1rem;
+                padding: 10px 15px;
+            }
+
+            .service-img {
+                height: 180px;
+                margin-top: 2rem;
+            }
+
+            .service-item {
+                margin-bottom: 2rem;
+            }
+
+            .service-btn {
+                width: 100%;
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .why-icon img {
+                max-width: 50%;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-item {
+                margin-bottom: 1rem;
+            }
+
+            .bottom-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .area-timeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .area-timeline::before {
+                width: 4px;
+                height: 100%;
+                left: 50%;
+                top: 0;
+                transform: translateX(-50%);
+            }
+
+            .area-point {
+                width: 100%;
+            }
+
+            .dot {
+                margin: 1rem 0;
+            }
+
+            .about-images {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .about-images img {
+                max-width: 60%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .hubungi-admin-section .col-md-6.text-md-end {
+                text-align: center !important;
+            }
+
+            .hubungi-admin-section .col-md-6.text-md-end img {
+                max-width: 60%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .hubungi-admin-section .btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+                width: 200px;
+            }
+
+            .about-us {
+                padding: 1rem 0 !important;
+                margin-bottom: 0 !important;
+            }
+
+            .about-us .container {
+                padding-bottom: 0 !important;
+            }
+
+            .about-images {
+                margin-bottom: 0 !important;
+            }
+
+            .services {
+                margin-top: 2rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .banner-title {
+                font-size: 2rem;
+            }
+
+            .banner-features {
+                font-size: 0.9rem;
+            }
+
+            .about-large-title {
+                font-size: 1.8rem;
+            }
+
+            .service-img {
+                height: 160px;
+            }
+
+            .why-icon img {
+                max-width: 60%;
+            }
+
+            .bottom-banner h1 {
+                font-size: 2rem;
+            }
+
+            .contact-text {
+                font-size: 1rem;
+            }
+
+            .banner-buttons .btn {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .about-btn {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+
+            .service-btn {
+                font-size: 0.8rem;
+                padding: 6px 10px;
+            }
+
+            .about-images img {
+                max-width: 50%;
+            }
+
+            .hubungi-admin-section .col-md-6.text-md-end img {
+                max-width: 50%;
+            }
+
+            .hubungi-admin-section .btn.btn-primary {
+                padding: 6px 12px !important;
+                font-size: 0.75rem !important;
+                width: 140px !important;
+                min-width: 140px !important;
+                max-width: 140px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .about-us {
+                padding: 0.5rem 0 !important;
+            }
+        }
+
+        /* Fix for mobile menu */
+        .navbar-toggler {
+            border: none;
+            padding: 0;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .navbar.scrolled .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                background-color: white;
+                padding: 1rem;
+                border-radius: 8px;
+                margin-top: 1rem;
+            }
+
+            .navbar-collapse .nav-link {
+                color: #333;
+                padding: 0.5rem 0;
+            }
+
+            .navbar-collapse .nav-link:hover {
+                color: #70BDD7;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#beranda">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tentang">Tentang</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#layanan">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#kontak">Kontak</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <h1 class="banner-title">Gubuk Refleksi Home Massage, Spa & Reflexology</h1>
+            <div class="banner-features">
+                <span>• Terapis Ramah & Profesional</span>
+                <span>• Pemesanan Mudah & Cepat</span>
+                <span>• Harga Terbaik dengan Kualitas Terbaik</span>
+                <span class="transport-free">• Gratis Biaya Transportasi</span>
+            </div>
+            <div class="banner-area">
+                Melayani area Jakarta, Bogor, Depok, Tanggerang & Bekasi
+            </div>
+            <div class="banner-buttons">
+                <a href="#" class="btn btn-primary">Pesan Sekarang</a>
+                <a href="#" class="btn btn-outline-light">Lihat Testimonial</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about-us py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="about-title">TENTANG KAMI</h2>
+                    <p>GR massage Home Massage & Refelexology menyedikan jasa massage/pijat/refleksi/spa panggilan untuk area Jakarta, Bogor, Depok, Tanggerang & Bekasi</p>
+                    <p>Kepuasan customer adalah kepuasan Kami. Maka dari itu kami menyediakan tenaga terapis yang berpengalaman dan profesional, kami juga berusaha memberikan pelayanan yang terbaik dalam melayani customer.</p>
+                    <p>Ayo investasikan tubuhmu bersama GR massage!</p>
+                    
+                    <h3 class="about-large-title">GR massage Home Massage,<br> Spa & Reflexology</h3>
+                    
+                    <a href="#" class="btn btn-primary about-btn">Pesan Sekarang</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="about-images">
+                        <!-- Placeholder for complex image layout -->
+                        <img src="Jakarta.png" alt="Massage Images" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Layanan dan Harga</h2>
+            <div class="row">
+                <!-- Service 1: Full Body Massage -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="/fullbodymassage.jpg" alt="Full Body Massage" class="img-fluid service-img">
+                        <h3 class="service-title">Full Body Massage</h3>
+                        <p class="service-description">Memberikan rasa nyaman, membantu mengedurkan otot-otot tubuh yang tegang dan membantu memiliki kualitas tidur yang lebih baik</p>
+                        <div class="service-price">
+                            <span>60 Menit = 120K</span><span>120 Menit = 210K</span>
+                            <span>90 Menit = 160K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Service 2: Full Body Massage & Bekam -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="/bekam.jpg" alt="Full Body Massage & Bekam" class="img-fluid service-img">
+                        <h3 class="service-title">Full Body Massage & Bekam</h3>
+                        <p class="service-description">Manfaat bekam sebagai metode pengobatan alternatif yaitu dapat melancarkan pembuluh darah, merangsang kinerja saraf, meningkatkan imunitas tubuh, membuang darah kotor dan membuat tubuh lebih rileks.</p>
+                        <div class="service-price">
+                             <span>60 Menit = 245K</span><span>120 Menit = 310K</span>
+                            <span>90 Menit = 280K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Service 3: Full Body Massage & Kerokan -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="/kerok.jpg" alt="Full Body Massage & Kerokan" class="img-fluid service-img">
+                        <h3 class="service-title">Full Body Massage & Kerokan</h3>
+                        <p class="service-description">Kerokan dipercaya dapat meringankan keluhan pegal, lemas, dan linu pada badan. Keluhan-keluhan ini sering disebut dengan istilah masuk angin.</p>
+                         <div class="service-price">
+                            <span>90 Menit = 165K</span>
+                            <span>120 Menit = 210K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Service 4: Full Body Massage & Refleksi -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="refleksi.jpg" alt="Full Body Massage & Refleksi" class="img-fluid service-img">
+                        <h3 class="service-title">Full Body Massage & Refleksi</h3>
+                        <p class="service-description">Perpaduan massage seluruh badan dan refleksi yang memberikan manfaat yang lebih banyak pada tubuh Anda.</p>
+                        <div class="service-price">
+                            <span>90 Menit = 185K</span>
+                            <span>120 Menit = 235K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Service 5: Full Body Massage & Scrub -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="scrub.jpg" alt="Full Body Massage & Scrub" class="img-fluid service-img">
+                        <h3 class="service-title">Full Body Massage & Scrub</h3>
+                        <p class="service-description">Body Scrub dapat membantu mengangkat sel kulit mati, mencegah penuaan dini seperti kerutan dan flek hitam, juga dapat membantu mencerahkan kulit.</p>
+                        <div class="service-price">
+                             <span>90 Menit = 190K</span>
+                             <span>120 Menit = 240K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Service 6: Refleksi -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="refleksi.jpg" alt="Refleksi" class="img-fluid service-img">
+                        <h3 class="service-title">Refleksi</h3>
+                        <p class="service-description">Pijat yang fokus pada titik saraf untuk melancarkan peredaran darah, menghilangkan rasa pegal dan lelah</p>
+                         <div class="service-price">
+                            <span>60 Menit = 100K</span>
+                            <span>90 Menit = 150K</span>
+                            <span>120 Menit = 190K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Service 7: Pregnancy Massage -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="pragnancy.jpg" alt="Pregnancy Massage" class="img-fluid service-img">
+                        <h3 class="service-title">Pregnancy Massage</h3>
+                        <p class="service-description">teknik yang dapat digunakan oleh terapis pijat yang terlatih khusus untuk melakukan pijatan pada orang yang sedang hamil.</p>
+                        <div class="service-price">
+                            <span>60 Menit = 150K</span>
+                            <span>90 Menit = 190K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                <!-- Service 8: Pijat Keselo / Pijat Injury -->
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <img src="keseleo.jpg" alt="Pijat Keselo / Pijat Injury" class="img-fluid service-img">
+                        <h3 class="service-title">Pijat Keselo / Pijat Injury</h3>
+                        <p class="service-description">Memebuat bagian yang kesleo menjadi lebih nyaman serta membantu pemulihan cidera</p>
+                        <div class="service-price">
+                             <span>90 Menit = 170K</span>
+                             <span>120 Menit = 220K</span>
+                        </div>
+                        <a href="#" class="btn btn-primary service-btn">Pesan Sekarang</a>
+                    </div>
+                </div>
+
+                 <!-- Empty column for spacing -->
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Kenapa harus GR Massage?</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="why-item">
+                        <!-- Icon Placeholder -->
+                        <div class="why-icon mb-3"><img src="icon1.png" alt="Terapis Berpengalaman Icon" class="img-fluid"></div>
+                        <h3>Terapis Berpengalaman</h3>
+                        <p>Kami menyediakan terapis pria dan wanita yang berpengalaman dan bersertifikat</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="why-item">
+                        <!-- Icon Placeholder -->
+                        <div class="why-icon mb-3"><img src="icon2.png" alt="Bersih & Higienis Icon" class="img-fluid"></div>
+                        <h3>Bersih & Higienis</h3>
+                        <p>Semua terapis dalam keadaan sehat dan juga menerapkan protokol kesehatan</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="why-item">
+                        <!-- Icon Placeholder -->
+                        <div class="why-icon mb-3"><img src="icon3.png" alt="Harga Terjangkau Icon" class="img-fluid"></div>
+                        <h3>Harga Terjangkau</h3>
+                        <p>Kami menawarkan harga yang terjangkau dan gratis ongkir transport</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New section: Hubungi Admin -->
+    <section class="py-5 hubungi-admin-section mt-5" style="background-color: #1F1C1C; color: #fff;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 style="font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 1.5rem; margin-bottom: 0.5rem;">Hubungi Admin</h2>
+                    <h3 style="font-family: 'Playfair Display', serif; font-weight: 600; font-size: 2.5rem; margin-bottom: 1.5rem;">Gubuk refleksi Home Massage</h3>
+                    <p style="font-family: 'Nunito', sans-serif; font-size: 1rem; line-height: 1.6; margin-bottom: 1.5rem;">Faktanya dengan menggunakan jasa kami. Anda tinggal duduk manis biar kami yang datang ke rumah anda cmiww 😊</p>
+                    <a href="#" class="btn btn-primary" style="padding: 16px 38px; font-size: 1.3rem; font-weight: 600; border-radius: 12px; transition: all 0.3s ease; width: 260px;">Pesan Sekarang</a>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <!-- Placeholder for image -->
+                    <img src="admin.png" alt="Image of Masseuses" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bottom-banner">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1>#Gratis Biaya Transportasi</h1>
+        </div>
+    </section>
+
+    <!-- New section: Area Layanan -->
+    <section class="service-area py-5 text-center">
+        <div class="container">
+            <h2 class="text-center mb-5">Area Layanan</h2>
+            <img src="area.png" alt="Area Layanan" class="img-fluid mx-auto d-block">
+        </div>
+    </section>
+
+    <!-- New section: Kontak Kami -->
+    <section class="contact-section" id="kontak">
+        <div class="container">
+            <h2 class="text-center">Kontak Kami</h2>
+            <div class="row align-items-center mt-5">
+                <div class="col-md-6">
+                    <!-- Map Placeholder -->
+                    <div class="map-placeholder">
+                         <img src="/map.png" alt="Lokasi Pijat Bekam Gubuk Refleksi" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <p class="contact-text-block">Pijat bekam Gubuk refleksi ingin mendengar masukan Anda. Posting ulasan ke profil kami.</p>
+                </div>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="https://www.facebook.com/profile.php?id=61550341748682&locale=id_ID" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="contact-icon"><!-- Facebook Icon SVG -->
+                    <img src="fb.png" alt="Facebook Icon" class="img-fluid" style="max-width: 40px;">
+                    </div>
+                    <div class="contact-text">gubuk terapi</div>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://wa.me/6285811779860" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="contact-icon"><!-- WhatsApp Icon SVG -->
+                    <img src="wa.png" alt="WhatsApp Icon" class="img-fluid" style="max-width: 40px;">
+                    </div>
+                    <div class="contact-text">085811779860</div>
+                     </a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://tiktok.com/@gubukterafis1" target="_blank" style="text-decoration: none; color: inherit;">
+                    <div class="contact-icon"><!-- TikTok Icon SVG -->
+                    <img src="tt.png" alt="TikTok Icon" class="img-fluid" style="max-width: 40px;">
+                    </div>
+                    <div class="contact-text">@gubukterafis1</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
